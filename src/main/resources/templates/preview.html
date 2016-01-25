@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+</head>
+<body>
+<b style="color: red;" th:text="${errorMsg}"></b>
+
+<div th:if="${errorMsg == null}">
+    Total: <b th:text="${list.size()}"></b>
+    <a th:href="@{/fullCsv}">Скачать полный файл</a>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>productCode</th>
+        <th>model</th>
+        <th>price</th>
+        <th>wheelsSize</th>
+        <th>frame</th>
+        <th>breaks</th>
+    </tr>
+    <tr th:each="bike,iterationStatus  : ${list}">
+        <td th:text="${iterationStatus.count}">1</td>
+        <td th:text="${bike.productCode}">001</td>
+        <td th:text="${bike.model}">Name</td>
+        <td><b th:text="${bike.price}"></b></td>
+        <td th:text="${bike.wheelsSize}">City</td>
+        <td th:text="${bike.frame}">City</td>
+        <td th:text="${bike.breaks}">City</td>
+    </tr>
+</table>
+</body>
+</html>

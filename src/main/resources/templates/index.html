@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<p th:text="${priceFileName}"></p>
+
+<p th:text="${priceFileExists}"></p>
+
+<table class="table table-striped">
+    <tr th:each="file,iterStat : ${files}">
+        <td th:text="${iterStat.index +1}"></td>
+        <td th:text="${file.name}"></td>
+        <td><a th:href="@{/preview(file=${file.name})}">Предпросмотр</a></td>
+    </tr>
+</table>
+
+<!--<a th:href="@{/preview}">Предпросмотр</a>-->
+
+<hr/>
+<form method="POST" enctype="multipart/form-data"
+      action="/uploadPrice">
+    File to upload: <input type="file" name="file"/>
+    <input type="submit" value="Upload"/> Press here to upload the file!
+</form>
+
+</body>
+</html>
