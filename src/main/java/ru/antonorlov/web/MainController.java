@@ -101,7 +101,6 @@ public class MainController {
                 LOGGER.error("Fail to get CSV file", ex);
             }
 
-
         }
         return new ResponseEntity<byte[]>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -109,9 +108,11 @@ public class MainController {
     private List<File> getUploadedFiles(){
         File dir = new File(uploadDir);
         List<File> files = new ArrayList<>();
-        for(File file : dir.listFiles()){
-            if(file.isFile()){
-                files.add(file);
+        if(dir != null && dir.listFiles()!= null) {
+            for (File file : dir.listFiles()) {
+                if (file.isFile()) {
+                    files.add(file);
+                }
             }
         }
         return files;

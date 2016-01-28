@@ -1,7 +1,7 @@
 package ru.antonorlov.csv;
 
 import com.csvreader.CsvWriter;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.antonorlov.entities.TmpBike;
 import ru.antonorlov.entities.WheelSize;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class BaseCSV {
 
-    static final Logger LOGGER = LogManager.getLogger(BaseCSV.class.getName());
+    static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(BaseCSV.class.getName());
 
     public void write(List<TmpBike> list) {
         CsvWriter csvWriter = null;

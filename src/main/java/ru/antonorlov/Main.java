@@ -1,17 +1,28 @@
 package ru.antonorlov;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.io.File;
 
 /**
  * Created by antonorlov on 01/12/14.
  */
 public class Main {
 
-    private static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
+//    private static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
     public static void main(String[] args) {
-        try {
-            LOGGER.info("Starting...");
+
+
+//        FtpClient.downloadFiles("velo-lineru/www/data/big");
+
+//        ImageResizer.resizeImage("/home/oav/tmp/StelsParser2014/downloads/sarrow1616.jpg",
+//                "/home/oav/tmp/StelsParser2014/resize/small/sarrow1616.jpg", ImageResizer.VeloLineImgSize.SMALL);
+//
+//        ImageResizer.resizeImage("/home/oav/tmp/StelsParser2014/downloads/sarrow1616.jpg",
+//                "/home/oav/tmp/StelsParser2014/resize/medium/sarrow1616.jpg", ImageResizer.VeloLineImgSize.MEDIUM);
+
+        File small = new File("/home/oav/tmp/StelsParser2014/resize/medium/sarrow1616.jpg");
+        FtpClient.uploadFiles(small,"velo-lineru/www/data/medium");
+//        try {
+//            LOGGER.info("Starting...");
 
         //get images
 //        ImageParser imageParser = new ImageParser();
@@ -55,8 +66,8 @@ public class Main {
 //        } catch (PriceReaderException ex) {
 //            LOGGER.error(ex);
 //
-        } catch (Exception ex) {
-            LOGGER.error(ex);
-        }
+//        } catch (Exception ex) {
+//            LOGGER.error(ex);
+//        }
     }
 }
