@@ -1,8 +1,8 @@
-package ru.antonorlov.excelnew;
+package ru.antonorlov.excel;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import ru.antonorlov.excel.PriceReaderException;
+import ru.antonorlov.util.PriceReaderException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,7 +27,7 @@ public abstract class AbstractParser {
      *
      * @param fileName
      * @return
-     * @throws ru.antonorlov.excel.PriceReaderException
+     * @throws ru.antonorlov.util.PriceReaderException
      */
     protected HSSFSheet getSheet(String fileName) throws PriceReaderException {
         HSSFSheet sheet;

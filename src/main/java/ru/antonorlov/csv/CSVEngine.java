@@ -7,8 +7,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.antonorlov.entities.FullBicycle;
-import ru.antonorlov.excel.PriceReaderException;
 import ru.antonorlov.util.Constants;
+import ru.antonorlov.util.PriceReaderException;
 
 import java.io.*;
 import java.nio.charset.Charset;

@@ -1,4 +1,4 @@
-package ru.antonorlov.excelnew;
+package ru.antonorlov.excel.stels;
 
 import com.csvreader.CsvReader;
 import org.apache.logging.log4j.LogManager;
@@ -9,9 +9,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.antonorlov.entities.*;
-import ru.antonorlov.excel.PriceReaderException;
+import ru.antonorlov.excel.AbstractParser;
 import ru.antonorlov.util.CodeGenerator;
 import ru.antonorlov.util.DescriptionParser;
+import ru.antonorlov.util.PriceReaderException;
+import ru.antonorlov.util.Year;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -20,54 +22,57 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by antonorlov on 11/01/15.
  */
 @Component
-public class PriceParserTwo extends AbstractParser {
+public class StelsPriceParser extends AbstractParser {
 
-    static final Logger LOGGER = LogManager.getLogger(PriceParserTwo.class.getName());
+    static final Logger LOGGER = LogManager.getLogger(StelsPriceParser.class.getName());
     List<SimpleBicycle> knownModels;
+    List<SimpleBicycle> knownModels2015;
     @Value("${stels.price.file}")
     private String priceFilePath;
     @Value("${stels.known.models}")
     private String knownModelsFilePath;
+    @Value("${stels.known.models.2015}")
+    private String knownModels2015FilePath;
     @Value("#{T(java.lang.Integer).parseInt('${stels.price.round.till}')}")
-//    @Value("stels.row_to_start")
     private int roundTillNum;
     @Value("#{T(java.lang.Integer).parseInt('${stels.row_to_start}')}")
-//    @Value("stels.row_to_start")
     private int rowToStart;
     @Value("#{T(java.lang.Integer).parseInt('${stels.model_name_column_number}')}")
     private int modelNameColumnNum;
     @Value("#{T(java.lang.Integer).parseInt('${stels.description_column_number}')}")
-//    @Value("stels.description_column_number")
     private int descriptionColumnNum;
     @Value("#{T(java.lang.Integer).parseInt('${stels.price_column_number}')}")
-//    @Value("stels.price_column_number")
     private int priceColumnNum;
-    private int price400ColumnNum = 0;
 
     @PostConstruct
     public void postConstruct() {
         knownModels = getKnownModelList(knownModelsFilePath);
+        knownModels2015 = getKnownModelList(knownModels2015FilePath);
     }
 
-    public List<PriceRow> getPriceRows() throws Exception {
-        HSSFSheet sheet = getSheet(priceFilePath);
-        List<PriceRow> rows = getDirtyModels(sheet);
-        return rows;
-    }
-
-    public List<Bicycle> getBicycles() throws PriceReaderException {
+    public List<Bicycle> getBicycles(final Year year) throws PriceReaderException {
         List<Bicycle> toReturn = new ArrayList<Bicycle>();
         HSSFSheet sheet = getSheet(priceFilePath);
         List<PriceRow> rows = getDirtyModels(sheet);
         for (PriceRow row : rows) {
             String dirtyName = row.getModelName().trim();
-            for (SimpleBicycle simpleBicycle : knownModels) {
+            List<SimpleBicycle> km;
+            if(year.equals(Year.YEAR_2016)){
+                km = knownModels;
+            }else if(year.equals(Year.YEAR_2015)){
+                km = knownModels2015;
+            }else{
+                LOGGER.error("YEAR is not defined");
+                return Collections.emptyList();
+            }
+            for (SimpleBicycle simpleBicycle : km) {
                 if (simpleBicycle.getDirtyModel().equals(dirtyName.trim())) {
                     Bicycle bicycle = new Bicycle(simpleBicycle);
                     int price =  0 ;
@@ -88,8 +93,8 @@ public class PriceParserTwo extends AbstractParser {
     }
 
 
-    public List<FullBicycle> getFullBicycles() throws Exception {
-        List<Bicycle> list = getBicycles();
+    public List<FullBicycle> getFullBicycles(final Year year) throws Exception {
+        List<Bicycle> list = getBicycles(year);
         List<FullBicycle> toReturn = new ArrayList<FullBicycle>();
 
         for (Bicycle bicycle : list) {
@@ -121,7 +126,6 @@ public class PriceParserTwo extends AbstractParser {
             Cell dirtyModelName = row.getCell(modelNameColumnNum);
             Cell description = row.getCell(descriptionColumnNum);
             Cell price = row.getCell(priceColumnNum);
-//            Cell price400 = row.getCell(price400ColumnNum);
 
             if (Cell.CELL_TYPE_STRING == dirtyModelName.getCellType()) {
                 String cellValue = dirtyModelName.getStringCellValue();
@@ -170,7 +174,8 @@ public class PriceParserTwo extends AbstractParser {
         File file = new File(filename);
         try {
             InputStream inputStream = new FileInputStream(file);
-            CsvReader csvReader = new CsvReader(inputStream, Charset.forName("CP1251"));
+//            CsvReader csvReader = new CsvReader(inputStream, Charset.forName("CP1251"));
+            CsvReader csvReader = new CsvReader(inputStream, Charset.forName("UTF-8"));
             csvReader.setDelimiter(';');
             while (csvReader.readRecord()) {
                 String[] values = csvReader.getValues();

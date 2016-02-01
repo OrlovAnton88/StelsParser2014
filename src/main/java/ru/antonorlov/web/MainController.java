@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.antonorlov.csv.CSVEngine;
 import ru.antonorlov.entities.FullBicycle;
-import ru.antonorlov.excelnew.PriceParserTwo;
+import ru.antonorlov.excel.stels.StelsPriceParser;
+import ru.antonorlov.util.Util;
+import ru.antonorlov.util.Year;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by antonorlov on 09/01/16.
@@ -34,7 +34,7 @@ public class MainController {
     private String uploadDir;
 
     @Autowired
-    private PriceParserTwo parser;
+    private StelsPriceParser parser;
 
     @RequestMapping("/")
     public ModelAndView index() {
@@ -53,8 +53,10 @@ public class MainController {
     public ModelAndView preview() {
         ModelAndView mv = new ModelAndView("preview");
         try {
-            List<FullBicycle> fullBicycles = parser.getFullBicycles();
-            mv.addObject("list", fullBicycles);
+            List<FullBicycle> fullBicycles = parser.getFullBicycles(Year.YEAR_2016);
+            Set<FullBicycle> result = addTransformed2015Model(fullBicycles);
+
+            mv.addObject("list", result);
         } catch (Exception ex) {
             mv.addObject("errorMsg", ex.getMessage());
             LOGGER.error("Fail to preview", ex);
@@ -86,14 +88,16 @@ public class MainController {
         List<FullBicycle> fullBicycles = null;
 
         try {
-            fullBicycles = parser.getFullBicycles();
+            fullBicycles = parser.getFullBicycles(Year.YEAR_2016);
         } catch (Exception ex) {
             LOGGER.error("Fail to get full bicycles", ex);
         }
 
+        Set<FullBicycle> result = addTransformed2015Model(fullBicycles);
+
         if (fullBicycles != null) {
             try {
-                byte[] bytes = csvEngine.getFullFile(fullBicycles);
+                byte[] bytes = csvEngine.getFullFile(result);
 
                 return new HttpEntity<byte[]>(bytes, header);
 
@@ -116,5 +120,28 @@ public class MainController {
             }
         }
         return files;
+    }
+
+    private Set<FullBicycle> addTransformed2015Model(List<FullBicycle> models2016){
+
+        try {
+            List<FullBicycle> fullBicycles2015 = parser.getFullBicycles(Year.YEAR_2015);
+
+            Util.transformTo2016(fullBicycles2015);
+
+            Set<FullBicycle> result = new HashSet<>(models2016);
+            for (FullBicycle b : fullBicycles2015) {
+                if (b.getProductCode().equals("sarrow1616")) {
+                    System.out.println("sarrow1616");
+                }
+                if (!result.contains(b)) {
+                    result.add(b);
+                }
+            }
+            return result;
+        }catch (Exception ex){
+            LOGGER.error("Fail to add transformed 2015 models ");
+        }
+        return Collections.emptySet();
     }
 }

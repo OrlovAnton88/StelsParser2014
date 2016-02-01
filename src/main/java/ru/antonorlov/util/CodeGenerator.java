@@ -1,7 +1,6 @@
 package ru.antonorlov.util;
 
 import ru.antonorlov.entities.Bicycle;
-import ru.antonorlov.excel.PriceReaderException;
 
 /**
  * Created by antonorlov on 06/12/14.

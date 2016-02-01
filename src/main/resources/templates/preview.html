@@ -17,21 +17,25 @@
 <table class="table table-striped">
     <tr>
         <th>#</th>
+        <th>synt</th>
         <th>productCode</th>
         <th>model</th>
         <th>price</th>
         <th>wheelsSize</th>
         <th>frame</th>
         <th>breaks</th>
+        <th>Image</th>
     </tr>
     <tr th:each="bike,iterationStatus  : ${list}">
         <td th:text="${iterationStatus.count}">1</td>
+        <td th:text="${bike.transformed}">1</td>
         <td th:text="${bike.productCode}">001</td>
         <td th:text="${bike.model}">Name</td>
         <td><b th:text="${bike.price}"></b></td>
         <td th:text="${bike.wheelsSize}">City</td>
         <td th:text="${bike.frame}">City</td>
         <td th:text="${bike.breaks}">City</td>
+        <td th:text="${bike.imageName}">image</td>
     </tr>
 </table>
 </body>

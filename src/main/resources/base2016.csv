@@ -6,7 +6,7 @@
 "Pilot-130 18"".16";"Pilot 130 18"" 2016";18
 "Pilot-140 16"".16";"Pilot 140 16"" 2016";16
 "Pilot-140 18"".16";"Pilot 140 18"" 2016";18
-"Pilot-150 16"" (Army).15";"Pilot 150 16"" (Army) 2016";16
+"Pilot-150 16"" (Army).16";"Pilot 150 16"" (Army) 2016";16
 "Pilot-150 16"".16";"Pilot 150 16"" 2016";16
 "Pilot-160 16"".16";"Pilot 160 16"" 2016";16
 "Pilot-160 18"".16";"Pilot 160 18"" 2016";18
@@ -23,8 +23,8 @@
 "Pilot-210 Gent 20"".16";Pilot 210 Boy 2016;20
 "Pilot-210 Lady 20"".16";Pilot 210 Girl 2016;20
 "Pilot-240 Gent 20"".16";Pilot 240 Boy 2016;20
-"Pilot-240 Lady 20"" 1-sp.15";Pilot 240 Girl 1-ск 2016;20
-"Pilot-240 Lady 20"" 3-sp.15";Pilot 240 Girl 3-ск 2016;20
+"Pilot-240 Lady 20"" 1-sp.16";Pilot 240 Girl 1-СЃРє 2016;20
+"Pilot-240 Lady 20"" 3-sp.16";Pilot 240 Girl 3-СЃРє 2016;20
 "Pilot-250 20"".16";Pilot 250 2016;20
 "Pilot-270 20"".16";Pilot 270 2016;20
 "Pilot-290 20"".16";Pilot 290 2016;20
@@ -34,9 +34,9 @@
 "ECHO 12"".16";"Echo 12"" 2016";12
 "ECHO 16"".16";"Echo 16"" 2016";16
 "Pilot-260 20"".16";Pilot 260 2016;20
-"Talisman 16"" (black).15";"Talisman 16"" (black) 2016";16
-"Talisman 16"" (chrome).15";"Talisman 16"" (chrome) 2016";16
-"Talisman 18"" (black).15";"Talisman 18"" (black) 2016";18
+"Talisman 16"" (black).16";"Talisman 16"" (black) 2016";16
+"Talisman 16"" (chrome).16";"Talisman 16"" (chrome) 2016";16
+"Talisman 18"" (black).16";"Talisman 18"" (black) 2016";18
 "Joy 12"".16";"Joy 12"" 2016";12
 "Joy 14"".16";"Joy 14"" 2016";14
 "Joy 16"".16";"Joy 16"" 2016";16
@@ -54,10 +54,10 @@
 "Flash 16"".16";"Flash 16"" 2016";16
 "Flash 18"".16";"Flash 18"" 2016";18
 "Fortune 16"".16";"Fortune 16"" 2016";16
-"Navigator-130 Gent 26"" 1-sp.15";Navigator 130 Gent 1-ск 2016;26
-"Navigator-130 Gent 26"" 3-sp.15";Navigator 130 Gent 3-ск 2016;26
-"Navigator-130 Lady 26"" 1-sp.15";Navigator 130 Lady 1-ск 2016;26
-"Navigator-130 Lady 26"" 3-sp.15";Navigator 130 Lady 3-ск 2016;26
+"Navigator-130 Gent 26"" 1-sp.16";Navigator 130 Gent 1-СЃРє 2016;26
+"Navigator-130 Gent 26"" 3-sp.16";Navigator 130 Gent 3-СЃРє 2016;26
+"Navigator-130 Lady 26"" 1-sp.16";Navigator 130 Lady 1-СЃРє 2016;26
+"Navigator-130 Lady 26"" 3-sp.16";Navigator 130 Lady 3-СЃРє 2016;26
 "Navigator-290 26"".16";Navigator 290 2016;26
 "Navigator-700 V 26"".16";Navigator 700 2016;26
 "Navigator-800 V 26"".16";Navigator 800 2016;26
@@ -65,15 +65,15 @@
 "Energy-II 26"".16";Energy-II 2016;26
 "Energy-III 26"".16";Energy-III 2016;26
 "Miss-7000 V 26"".16";Miss 7000 2016;26
-"Navigator-150 Gent 26"" 1-sp.15";Navigator 150 Gent 1-ск 2016;26
-"Navigator-150 Gent 26"" 3-sp.15";Navigator 150 Gent 3-ск 2016;26
-"Navigator-150 Lady 26"" 1-sp.15";Navigator 150 Lady 1-ск 2016;26
-"Navigator-150 Lady 26"" 3-sp.15";Navigator 150 Lady 3-ск 2016;26
+"Navigator-150 Gent 26"" 1-sp.16";Navigator 150 Gent 1-СЃРє 2016;26
+"Navigator-150 Gent 26"" 3-sp.16";Navigator 150 Gent 3-СЃРє 2016;26
+"Navigator-150 Lady 26"" 1-sp.16";Navigator 150 Lady 1-СЃРє 2016;26
+"Navigator-150 Lady 26"" 3-sp.16";Navigator 150 Lady 3-СЃРє 2016;26
 "Navigator-270 26"".16";Navigator 270 2016;26
 "Navigator-210 Gent 26"".16";Navigator 210 Gent 2016;26
 "Navigator-210 Lady 26"".16";Navigator 210 Lady 2016;26
-"Navigator-300 Gent 28"" (производство).15";Navigator 300 Gent 2016;28
-"Navigator-300 Lady 28"" (производство).15";Navigator 300 Lady 2016;28
+"Navigator-300 Gent 28"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).16";Navigator 300 Gent 2016;28
+"Navigator-300 Lady 28"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).16";Navigator 300 Lady 2016;28
 "Navigator-310 Gent 28"".16";Navigator 310 Gent 2016;28
 "Navigator-310 Lady 28"".16";Navigator 310 Lady 2016;28
 "Navigator-340 Lady 28"".16";Navigator 340 Lady 2016;28
@@ -101,12 +101,12 @@
 "Mustang V 24"".16";Mustang 2016;24
 "Pilot-280 20"".16";Pilot 280 2016;20
 "Navigator-480 MD 24"".16";Navigator 480 Disc 2016;24
-"Pilot-310 20"" (производство).15";Pilot 310 2016;20
+"Pilot-310 20"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).16";Pilot 310 2016;20
 "Pilot-350 20"".16";Pilot 350 2016;20
-"Pilot-410 20"" (производство).15";Pilot 410 2016;20
+"Pilot-410 20"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).16";Pilot 410 2016;20
 "Pilot-430 20"".16";Pilot 430 2016;20
 "Pilot-450 20"".16";Pilot 450 2016;20
-"Pilot-710 24"" (производство).15";Pilot 710 2016;24
+"Pilot-710 24"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).16";Pilot 710 2016;24
 "Pilot-730 24"".16";Pilot 730 2016;24
 "Pilot-750 24"".16";Pilot 750 2016;24
 "Pilot-810 24"".16";Pilot 810 2016;24
@@ -146,8 +146,8 @@
 "Adrenalin V 26"".16";Adrenalin 2016;26
 "Challenger MD 26"".16";Challenger Disc 2016;26
 "Challenger V 26"".16";Challenger 2016;26
-"Focus V 26"" 18-sp.15";Focus 18-ск 2016;26
-"Focus V 26"" 21-sp.15";Focus 21-ск 2016;26
+"Focus V 26"" 18-sp.16";Focus 18-СЃРє 2016;26
+"Focus V 26"" 21-sp.16";Focus 21-СЃРє 2016;26
 "Navigator V 26"".16";Navigator 2016;26
 "Navigator D 26"".16";Navigator Disc 2016;26
 "Voyager V 26"".16";Voyager 2016;26

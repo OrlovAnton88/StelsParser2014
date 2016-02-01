@@ -26,7 +26,7 @@ public class ImageParser {
 //            String modelName = fullBicycle.getModel();
 //            String[] nodes = modelName.split(Constants.SPACE_CHAR);
             String imgName = fullBicycle.getProductCode() + ".jpg";
-            String imgName2 = fullBicycle.getProductCode() + "_2"+ ".jpg";
+            String imgName2 = fullBicycle.getProductCode() + "_2" + ".jpg";
             String imgName3 = fullBicycle.getProductCode() + "_3" + ".jpg";
 //            for(int i =0; i< nodes.length; i++){
 //                if(i == 0 || i == 1){
@@ -47,18 +47,18 @@ public class ImageParser {
     }
 
 
-    public void renameImages(){
+    public void renameImages() {
         for (File file : fileList) {
             String name = file.getName().toLowerCase();
             String newName = "s";
-            if(name.contains("pilot")){
-                name = name.replaceAll("pilot","p");
-            }else if(name.contains("nav")){
-                name = name.replaceAll("nav","n");
-            }else if(name.contains("miss")){
-                name = name.replaceAll("miss","m");
+            if (name.contains("pilot")) {
+                name = name.replaceAll("pilot", "p");
+            } else if (name.contains("nav")) {
+                name = name.replaceAll("nav", "n");
+            } else if (name.contains("miss")) {
+                name = name.replaceAll("miss", "m");
             }
-            name = name.replaceAll("-","_");
+            name = name.replaceAll("-", "_");
             newName = newName + name.trim();
             File f = new File(file.getParentFile().getAbsoluteFile() + "/" + newName);
             file.renameTo(f);

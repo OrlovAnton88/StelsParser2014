@@ -41,6 +41,11 @@ public class FullBicycle implements Cloneable {
     private String rack;
     private String shortDescription;
 
+    /**
+     * true if model not from price list, but constructed syntatically
+     */
+    private boolean transformed = false;
+
     public FullBicycle() {
     }
 
@@ -331,6 +336,13 @@ public class FullBicycle implements Cloneable {
         this.saddle = saddle;
     }
 
+    public boolean isTransformed() {
+        return transformed;
+    }
+
+    public void setTransformed(boolean transformed) {
+        this.transformed = transformed;
+    }
 
     public String toString(){
         StringBuffer s = new StringBuffer("FullBicycle  - model[");
@@ -350,5 +362,20 @@ public class FullBicycle implements Cloneable {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        FullBicycle that = (FullBicycle) o;
+
+        if (!productCode.equals(that.productCode)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return productCode.hashCode();
+    }
 }

@@ -20,7 +20,7 @@ public class Main {
 //                "/home/oav/tmp/StelsParser2014/resize/medium/sarrow1616.jpg", ImageResizer.VeloLineImgSize.MEDIUM);
 
         File small = new File("/home/oav/tmp/StelsParser2014/resize/medium/sarrow1616.jpg");
-        FtpClient.uploadFiles(small,"velo-lineru/www/data/medium");
+//        FtpService.uploadFiles(small, "velo-lineru/www/data/medium");
 //        try {
 //            LOGGER.info("Starting...");
 

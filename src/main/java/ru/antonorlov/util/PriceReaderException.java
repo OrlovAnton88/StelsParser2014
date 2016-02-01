@@ -1,4 +1,4 @@
-package ru.antonorlov.excel;
+package ru.antonorlov.util;
 
 /**
  * Created with IntelliJ IDEA.

@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.antonorlov.entities.Bicycle;
 import ru.antonorlov.entities.FullBicycle;
-import ru.antonorlov.excel.PriceReaderException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

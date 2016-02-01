@@ -16,22 +16,23 @@ import java.io.IOException;
  * Revision:    $Id$ <br>
  * Description: <br>
  */
-public class ImageResizer {
+public class ImageResizeHelper {
 
 
-    private static final Logger LOGGER = LogManager.getLogger(ImageResizer.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(ImageResizeHelper.class.getName());
 
-    public static void resizeImage(final String origFilePath,final String destFilePath,VeloLineImgSize size ){
-
+    public static void resizeImage(final String origFilePath, final String destFilePath, VeloLineImgSize size) {
         try {
             BufferedImage img = ImageIO.read(new File(origFilePath));
 
-           BufferedImage scaledImg = Scalr.resize(img, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, size.getWidth());
+            BufferedImage scaledImg = Scalr.resize(img,
+                    Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, size.getWidth());
 
             File destFile = new File(destFilePath);
 
             ImageIO.write(scaledImg, "jpg", destFile);
-        }catch (IOException ex){
+
+        } catch (IOException ex) {
             LOGGER.error("Error resizing image", ex);
         }
 
@@ -39,7 +40,7 @@ public class ImageResizer {
     }
 
 
-    public enum VeloLineImgSize{
+    public enum VeloLineImgSize {
         SMALL(150), MEDIUM(350);
         private int width;
 

@@ -13,7 +13,7 @@ public class RenameFiles {
 
 
     public static void main(String[] args) {
-        File imgDir = new File(FtpClient.pathToDownload);
+        File imgDir = new File(FtpService.pathToDownload);
 
         for (File f : imgDir.listFiles()) {
             System.out.println(f.getName());

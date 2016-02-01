@@ -1,7 +1,7 @@
 package ru.antonorlov.csv;
 
-import ru.antonorlov.excel.PriceReaderException;
 import ru.antonorlov.util.Constants;
+import ru.antonorlov.util.PriceReaderException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

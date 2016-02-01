@@ -23,8 +23,8 @@
 "Pilot-210 Gent 20"".15";Pilot 210 Boy 2015;20
 "Pilot-210 Lady 20"".15";Pilot 210 Girl 2015;20
 "Pilot-240 Gent 20"".15";Pilot 240 Boy 2015;20
-"Pilot-240 Lady 20"" 1-sp.15";Pilot 240 Girl 1-ск 2015;20
-"Pilot-240 Lady 20"" 3-sp.15";Pilot 240 Girl 3-ск 2015;20
+"Pilot-240 Lady 20"" 1-sp.15";Pilot 240 Girl 1-СЃРє 2015;20
+"Pilot-240 Lady 20"" 3-sp.15";Pilot 240 Girl 3-СЃРє 2015;20
 "Pilot-250 20"".15";Pilot 250 2015;20
 "Pilot-270 20"".15";Pilot 270 2015;20
 "Pilot-290 20"".15";Pilot 290 2015;20
@@ -54,10 +54,10 @@
 "Flash 16"".15";"Flash 16"" 2015";16
 "Flash 18"".15";"Flash 18"" 2015";18
 "Fortune 16"".15";"Fortune 16"" 2015";16
-"Navigator-130 Gent 26"" 1-sp.15";Navigator 130 Gent 1-ск 2015;26
-"Navigator-130 Gent 26"" 3-sp.15";Navigator 130 Gent 3-ск 2015;26
-"Navigator-130 Lady 26"" 1-sp.15";Navigator 130 Lady 1-ск 2015;26
-"Navigator-130 Lady 26"" 3-sp.15";Navigator 130 Lady 3-ск 2015;26
+"Navigator-130 Gent 26"" 1-sp.15";Navigator 130 Gent 1-СЃРє 2015;26
+"Navigator-130 Gent 26"" 3-sp.15";Navigator 130 Gent 3-СЃРє 2015;26
+"Navigator-130 Lady 26"" 1-sp.15";Navigator 130 Lady 1-СЃРє 2015;26
+"Navigator-130 Lady 26"" 3-sp.15";Navigator 130 Lady 3-СЃРє 2015;26
 "Navigator-290 26"".15";Navigator 290 2015;26
 "Navigator-700 V 26"".15";Navigator 700 2015;26
 "Navigator-800 V 26"".15";Navigator 800 2015;26
@@ -65,15 +65,15 @@
 "Energy-II 26"".15";Energy-II 2015;26
 "Energy-III 26"".15";Energy-III 2015;26
 "Miss-7000 V 26"".15";Miss 7000 2015;26
-"Navigator-150 Gent 26"" 1-sp.15";Navigator 150 Gent 1-ск 2015;26
-"Navigator-150 Gent 26"" 3-sp.15";Navigator 150 Gent 3-ск 2015;26
-"Navigator-150 Lady 26"" 1-sp.15";Navigator 150 Lady 1-ск 2015;26
-"Navigator-150 Lady 26"" 3-sp.15";Navigator 150 Lady 3-ск 2015;26
+"Navigator-150 Gent 26"" 1-sp.15";Navigator 150 Gent 1-СЃРє 2015;26
+"Navigator-150 Gent 26"" 3-sp.15";Navigator 150 Gent 3-СЃРє 2015;26
+"Navigator-150 Lady 26"" 1-sp.15";Navigator 150 Lady 1-СЃРє 2015;26
+"Navigator-150 Lady 26"" 3-sp.15";Navigator 150 Lady 3-СЃРє 2015;26
 "Navigator-270 26"".15";Navigator 270 2015;26
 "Navigator-210 Gent 26"".15";Navigator 210 Gent 2015;26
 "Navigator-210 Lady 26"".15";Navigator 210 Lady 2015;26
-"Navigator-300 Gent 28"" (производство).15";Navigator 300 Gent 2015;28
-"Navigator-300 Lady 28"" (производство).15";Navigator 300 Lady 2015;28
+"Navigator-300 Gent 28"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).15";Navigator 300 Gent 2015;28
+"Navigator-300 Lady 28"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).15";Navigator 300 Lady 2015;28
 "Navigator-310 Gent 28"".15";Navigator 310 Gent 2015;28
 "Navigator-310 Lady 28"".15";Navigator 310 Lady 2015;28
 "Navigator-340 Lady 28"".15";Navigator 340 Lady 2015;28
@@ -101,12 +101,12 @@
 "Mustang V 24"".15";Mustang 2015;24
 "Pilot-280 20"".15";Pilot 280 2015;20
 "Navigator-480 MD 24"".15";Navigator 480 Disc 2015;24
-"Pilot-310 20"" (производство).15";Pilot 310 2015;20
+"Pilot-310 20"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).15";Pilot 310 2015;20
 "Pilot-350 20"".15";Pilot 350 2015;20
-"Pilot-410 20"" (производство).15";Pilot 410 2015;20
+"Pilot-410 20"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).15";Pilot 410 2015;20
 "Pilot-430 20"".15";Pilot 430 2015;20
 "Pilot-450 20"".15";Pilot 450 2015;20
-"Pilot-710 24"" (производство).15";Pilot 710 2015;24
+"Pilot-710 24"" (РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ).15";Pilot 710 2015;24
 "Pilot-730 24"".15";Pilot 730 2015;24
 "Pilot-750 24"".15";Pilot 750 2015;24
 "Pilot-810 24"".15";Pilot 810 2015;24
@@ -146,8 +146,8 @@
 "Adrenalin V 26"".15";Adrenalin 2015;26
 "Challenger MD 26"".15";Challenger Disc 2015;26
 "Challenger V 26"".15";Challenger 2015;26
-"Focus V 26"" 18-sp.15";Focus 18-ск 2015;26
-"Focus V 26"" 21-sp.15";Focus 21-ск 2015;26
+"Focus V 26"" 18-sp.15";Focus 18-СЃРє 2015;26
+"Focus V 26"" 21-sp.15";Focus 21-СЃРє 2015;26
 "Navigator V 26"".15";Navigator 2015;26
 "Navigator D 26"".15";Navigator Disc 2015;26
 "Voyager V 26"".15";Voyager 2015;26
