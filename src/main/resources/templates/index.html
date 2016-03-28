@@ -23,6 +23,8 @@
 <hr/>
 <form method="POST" enctype="multipart/form-data"
       action="/uploadPrice">
+    <input type="radio" name="brand" value="STELS" th:checked="checked"/> STELS<br/>
+    <input type="radio" name="brand" value="FORWARD"/> FORWARD <br/>
     File to upload: <input type="file" name="file"/>
     <input type="submit" value="Upload"/> Press here to upload the file!
 </form>

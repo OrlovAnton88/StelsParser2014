@@ -1,13 +1,13 @@
 package ru.antonorlov.util;
 
-import ru.antonorlov.entities.Bicycle;
+import ru.antonorlov.entities.DirtyBicycle;
 
 /**
  * Created by antonorlov on 06/12/14.
  */
 public class CodeGenerator {
 
-    public static String generateCode(Bicycle bicycle) throws PriceReaderException{
+    public static String generateCode(DirtyBicycle bicycle) throws PriceReaderException{
 
         String model = bicycle.getModel();
         if (model == null) {

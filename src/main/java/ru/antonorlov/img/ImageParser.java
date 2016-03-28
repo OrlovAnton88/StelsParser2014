@@ -1,7 +1,7 @@
 package ru.antonorlov.img;
 
 
-import ru.antonorlov.entities.FullBicycle;
+import ru.antonorlov.entities.Bicycle;
 import ru.antonorlov.util.Constants;
 
 import java.io.File;
@@ -21,8 +21,8 @@ public class ImageParser {
     }
 
 
-    public List<FullBicycle> appendImgNameToBikes(List<FullBicycle> list) {
-        for (FullBicycle fullBicycle : list) {
+    public List<Bicycle> appendImgNameToBikes(List<Bicycle> list) {
+        for (Bicycle fullBicycle : list) {
 //            String modelName = fullBicycle.getModel();
 //            String[] nodes = modelName.split(Constants.SPACE_CHAR);
             String imgName = fullBicycle.getProductCode() + ".jpg";

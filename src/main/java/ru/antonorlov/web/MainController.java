@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.antonorlov.csv.CSVEngine;
-import ru.antonorlov.entities.FullBicycle;
+import ru.antonorlov.entities.Bicycle;
 import ru.antonorlov.excel.stels.StelsPriceParser;
 import ru.antonorlov.util.Util;
 import ru.antonorlov.util.Year;
@@ -49,12 +49,16 @@ public class MainController {
         return mv;
     }
 
+    /**
+     * Предпросмотр прайса
+     * @return
+     */
     @RequestMapping("/preview")
     public ModelAndView preview() {
         ModelAndView mv = new ModelAndView("preview");
         try {
-            List<FullBicycle> fullBicycles = parser.getFullBicycles(Year.YEAR_2016);
-            Set<FullBicycle> result = addTransformed2015Model(fullBicycles);
+            List<Bicycle> fullBicycles = parser.getBicycles(Year.YEAR_2016);
+            Set<Bicycle> result = addTransformed2015Model(fullBicycles);
 
             mv.addObject("list", result);
         } catch (Exception ex) {
@@ -85,15 +89,15 @@ public class MainController {
                 "attachment; filename=" + csvFileName);
 
 
-        List<FullBicycle> fullBicycles = null;
+        List<Bicycle> fullBicycles = null;
 
         try {
-            fullBicycles = parser.getFullBicycles(Year.YEAR_2016);
+            fullBicycles = parser.getBicycles(Year.YEAR_2016);
         } catch (Exception ex) {
             LOGGER.error("Fail to get full bicycles", ex);
         }
 
-        Set<FullBicycle> result = addTransformed2015Model(fullBicycles);
+        Set<Bicycle> result = addTransformed2015Model(fullBicycles);
 
         if (fullBicycles != null) {
             try {
@@ -122,15 +126,15 @@ public class MainController {
         return files;
     }
 
-    private Set<FullBicycle> addTransformed2015Model(List<FullBicycle> models2016){
+    private Set<Bicycle> addTransformed2015Model(List<Bicycle> models2016){
 
         try {
-            List<FullBicycle> fullBicycles2015 = parser.getFullBicycles(Year.YEAR_2015);
+            List<Bicycle> fullBicycles2015 = parser.getBicycles(Year.YEAR_2015);
 
             Util.transformTo2016(fullBicycles2015);
 
-            Set<FullBicycle> result = new HashSet<>(models2016);
-            for (FullBicycle b : fullBicycles2015) {
+            Set<Bicycle> result = new HashSet<>(models2016);
+            for (Bicycle b : fullBicycles2015) {
                 if (b.getProductCode().equals("sarrow1616")) {
                     System.out.println("sarrow1616");
                 }

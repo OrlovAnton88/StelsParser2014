@@ -1,11 +1,21 @@
 package ru.antonorlov.entities;
 
+import com.sun.istack.internal.Nullable;
+import ru.antonorlov.util.Year;
+
 /**
  * Created by antonorlov on 02/12/14.
  */
 public class PriceRow {
     private String modelName;
+
+    @Nullable
     private String description;
+
+    @Nullable
+    private Year year;
+
+
     private Double retailPrice;
     private Double price400;
     private Double price1bln;
@@ -57,5 +67,13 @@ public class PriceRow {
 
     public void setPrice1_5bln(Double price1_5bln) {
         this.price1_5bln = price1_5bln;
+    }
+
+    public Year getYear() {
+        return year;
+    }
+
+    public void setYear(Year year) {
+        this.year = year;
     }
 }

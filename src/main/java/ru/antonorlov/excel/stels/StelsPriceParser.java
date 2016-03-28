@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.antonorlov.entities.*;
 import ru.antonorlov.excel.AbstractParser;
-import ru.antonorlov.util.CodeGenerator;
-import ru.antonorlov.util.DescriptionParser;
-import ru.antonorlov.util.PriceReaderException;
-import ru.antonorlov.util.Year;
+import ru.antonorlov.util.*;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -23,6 +20,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,16 +38,6 @@ public class StelsPriceParser extends AbstractParser {
     private String knownModelsFilePath;
     @Value("${stels.known.models.2015}")
     private String knownModels2015FilePath;
-    @Value("#{T(java.lang.Integer).parseInt('${stels.price.round.till}')}")
-    private int roundTillNum;
-    @Value("#{T(java.lang.Integer).parseInt('${stels.row_to_start}')}")
-    private int rowToStart;
-    @Value("#{T(java.lang.Integer).parseInt('${stels.model_name_column_number}')}")
-    private int modelNameColumnNum;
-    @Value("#{T(java.lang.Integer).parseInt('${stels.description_column_number}')}")
-    private int descriptionColumnNum;
-    @Value("#{T(java.lang.Integer).parseInt('${stels.price_column_number}')}")
-    private int priceColumnNum;
 
     @PostConstruct
     public void postConstruct() {
@@ -57,30 +45,60 @@ public class StelsPriceParser extends AbstractParser {
         knownModels2015 = getKnownModelList(knownModels2015FilePath);
     }
 
-    public List<Bicycle> getBicycles(final Year year) throws PriceReaderException {
-        List<Bicycle> toReturn = new ArrayList<Bicycle>();
-        HSSFSheet sheet = getSheet(priceFilePath);
-        List<PriceRow> rows = getDirtyModels(sheet);
+    @Override
+    public String getPriceDate(String fileName) {
+        try {
+            HSSFSheet sheet = getSheet(fileName, 0);
+
+            String marker = "Дата";
+
+            int numOfRows = sheet.getPhysicalNumberOfRows() > 10 ? 10 : sheet.getPhysicalNumberOfRows();
+
+            String dirtyDate = null;
+
+            for (int i = priceConfig.getRowToStart(Brand.STELS); i < numOfRows; i++) {
+                Row row = sheet.getRow(i);
+                if (row.getPhysicalNumberOfCells() > 1) {
+                    Cell cell = row.getCell(0);
+                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                        String stringCellValue = cell.getStringCellValue();
+                        if (stringCellValue.contains(marker)) {
+                            dirtyDate = stringCellValue;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (dirtyDate != null) {
+                return dirtyDate.trim();
+            }
+
+        } catch (Exception ex) {
+            LOGGER.error("FAIL to get price date - return today");
+            return new Date().toString();
+        }
+        return new Date().toString();
+    }
+
+    public List<DirtyBicycle> getDirtyBicycles(final Year year, final String file) throws PriceReaderException {
+        List<DirtyBicycle> toReturn = new ArrayList<DirtyBicycle>();
+        HSSFSheet sheet = getSheet(file, 0);
+        List<PriceRow> rows = getPriceRows(sheet, Brand.STELS);
         for (PriceRow row : rows) {
             String dirtyName = row.getModelName().trim();
             List<SimpleBicycle> km;
-            if(year.equals(Year.YEAR_2016)){
+            if (year.equals(Year.YEAR_2016)) {
                 km = knownModels;
-            }else if(year.equals(Year.YEAR_2015)){
+            } else if (year.equals(Year.YEAR_2015)) {
                 km = knownModels2015;
-            }else{
+            } else {
                 LOGGER.error("YEAR is not defined");
                 return Collections.emptyList();
             }
             for (SimpleBicycle simpleBicycle : km) {
                 if (simpleBicycle.getDirtyModel().equals(dirtyName.trim())) {
-                    Bicycle bicycle = new Bicycle(simpleBicycle);
-                    int price =  0 ;
-                    Double retailPrice = row.getRetailPrice();
-                    if( retailPrice != null && retailPrice != 0.0){
-                        price = ( retailPrice.intValue() / roundTillNum) * 10;
-                    }
-                    bicycle.setPrice(price);
+                    DirtyBicycle bicycle = new DirtyBicycle(simpleBicycle);
+                    bicycle.setPrice(getRoundedPrice(row.getRetailPrice()));
                     bicycle.setDescription(row.getDescription());
                     bicycle.setProdCode(CodeGenerator.generateCode(bicycle));
                     toReturn.add(bicycle);
@@ -93,12 +111,17 @@ public class StelsPriceParser extends AbstractParser {
     }
 
 
-    public List<FullBicycle> getFullBicycles(final Year year) throws Exception {
-        List<Bicycle> list = getBicycles(year);
-        List<FullBicycle> toReturn = new ArrayList<FullBicycle>();
 
-        for (Bicycle bicycle : list) {
-            FullBicycle b = DescriptionParser.parseDescription(bicycle.getDescription(), bicycle);
+    public List<Bicycle> getBicycles(final Year year) throws PriceReaderException {
+        return getBicycles(year, priceFilePath);
+    }
+
+    public List<Bicycle> getBicycles(final Year year, final String filePath) throws PriceReaderException {
+        List<DirtyBicycle> list = getDirtyBicycles(year, filePath);
+        List<Bicycle> toReturn = new ArrayList<>();
+
+        for (DirtyBicycle bicycle : list) {
+            Bicycle b = DescriptionParser.parseDescription(bicycle.getDescription(), bicycle);
             b.setModel("Stels " + b.getModel());
             b.setShortDescription(DescriptionParser.getShortDescription(b));
 
@@ -110,64 +133,6 @@ public class StelsPriceParser extends AbstractParser {
         return toReturn;
     }
 
-    private List<PriceRow> getDirtyModels(HSSFSheet sheet) {
-
-        List<PriceRow> list = new ArrayList<PriceRow>(200);
-
-        int numOfRows = sheet.getPhysicalNumberOfRows();
-
-        for (int i = rowToStart; i < numOfRows; i++) {
-            PriceRow priceRow = new PriceRow();
-
-            Row row = sheet.getRow(i);
-            if (row == null) {
-                break;
-            }
-            Cell dirtyModelName = row.getCell(modelNameColumnNum);
-            Cell description = row.getCell(descriptionColumnNum);
-            Cell price = row.getCell(priceColumnNum);
-
-            if (Cell.CELL_TYPE_STRING == dirtyModelName.getCellType()) {
-                String cellValue = dirtyModelName.getStringCellValue();
-                priceRow.setModelName(cellValue);
-            } else {
-                continue;
-            }
-
-            if (Cell.CELL_TYPE_STRING == description.getCellType()) {
-                String cellValue = description.getStringCellValue();
-                priceRow.setDescription(cellValue);
-            } else {
-                continue;
-            }
-
-            if (Cell.CELL_TYPE_NUMERIC == price.getCellType()) {
-                Double cellValue = price.getNumericCellValue();
-                priceRow.setRetailPrice(cellValue);
-            } else {
-                if (Cell.CELL_TYPE_STRING == price.getCellType()) {
-                    String s = price.getStringCellValue();
-                    double p = 0.0;
-                    if (s != null) {
-                        s = s.replaceAll("\u00A0", "").replaceAll(",",".");
-                        try {
-                            p = Double.valueOf(s);
-                        } catch (NumberFormatException ex) {
-                            LOGGER.error("Error parsing price[" + s + "]", ex);
-                        }
-                    }
-                        priceRow.setRetailPrice(p);
-
-                } else {
-                    priceRow.setRetailPrice(0.0);
-                }
-            }
-
-            list.add(priceRow);
-        }
-        return list;
-
-    }
 
     private List<SimpleBicycle> getKnownModelList(String filename) {
         List<SimpleBicycle> list = new ArrayList<SimpleBicycle>();

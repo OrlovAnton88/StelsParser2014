@@ -11,6 +11,8 @@ public class Main {
     public static void main(String[] args) {
 
 
+
+
 //        FtpClient.downloadFiles("velo-lineru/www/data/big");
 
 //        ImageResizer.resizeImage("/home/oav/tmp/StelsParser2014/downloads/sarrow1616.jpg",

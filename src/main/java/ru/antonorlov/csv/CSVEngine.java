@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import ru.antonorlov.entities.FullBicycle;
+import ru.antonorlov.entities.Bicycle;
 import ru.antonorlov.util.Constants;
 import ru.antonorlov.util.PriceReaderException;
 
@@ -22,7 +22,7 @@ public class CSVEngine {
     @Value("#{T(java.lang.Integer).parseInt('${stels.price.default.sort}')}")
     private int sortValue;
 
-    public void writeFullFile(Collection<FullBicycle> bicycles) throws PriceReaderException {
+    public void writeFullFile(Collection<Bicycle> bicycles) throws PriceReaderException {
 
         CsvWriter csvWriter = null;
         try {
@@ -38,7 +38,7 @@ public class CSVEngine {
             csvWriter = new CsvWriter(fileOutputStream, ';', Charset.forName("CP1251"));
             String[] line = CSVEngineHelper.getHeader();
             csvWriter.writeRecord(line);
-            for (FullBicycle model : bicycles) {
+            for (Bicycle model : bicycles) {
                 line = convertModelsIntoArray(model);
                 csvWriter.writeRecord(line);
             }
@@ -55,14 +55,14 @@ public class CSVEngine {
 
     }
 
-    public byte[] getFullFile(Collection<FullBicycle> bicycles) throws PriceReaderException {
+    public byte[] getFullFile(Collection<Bicycle> bicycles) throws PriceReaderException {
         CsvWriter csvWriter = null;
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             csvWriter = new CsvWriter(outputStream, ';', Charset.forName("CP1251"));
             String[] line = CSVEngineHelper.getHeader();
             csvWriter.writeRecord(line);
-            for (FullBicycle model : bicycles) {
+            for (Bicycle model : bicycles) {
                 line = convertModelsIntoArray(model);
                 csvWriter.writeRecord(line);
             }
@@ -82,7 +82,7 @@ public class CSVEngine {
     }
 
 
-    public void writeCodeAndPriceFile(Collection<FullBicycle> bicycles) throws PriceReaderException {
+    public void writeCodeAndPriceFile(Collection<Bicycle> bicycles) throws PriceReaderException {
 
         CsvWriter csvWriter = null;
         try {
@@ -98,7 +98,7 @@ public class CSVEngine {
             csvWriter = new CsvWriter(fileOutputStream, ';', Charset.forName("CP1251"));
             String[] line = {"Код", "Цена"};
             csvWriter.writeRecord(line);
-            for (FullBicycle bicycle : bicycles) {
+            for (Bicycle bicycle : bicycles) {
                 line = new String[]{bicycle.getProductCode(), String.valueOf(bicycle.getPrice())};
                 csvWriter.writeRecord(line);
 
@@ -116,7 +116,7 @@ public class CSVEngine {
 
     }
 
-    private String[] convertModelsIntoArray(FullBicycle model) {
+    private String[] convertModelsIntoArray(Bicycle model) {
         String prodCode = model.getProductCode();
         String[] result = new String[52];
         for (int i = 0; i < 25; i++) {

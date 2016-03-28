@@ -3,7 +3,7 @@ package ru.antonorlov.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.antonorlov.entities.Bicycle;
-import ru.antonorlov.entities.FullBicycle;
+import ru.antonorlov.entities.DirtyBicycle;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,9 +26,9 @@ public class DescriptionParser {
     private static final String FROND_DERAILLEUR = "FD";
     private static final String REAR_DERAILLEUR = "RD";
 
-    public static FullBicycle parseDescription(String dirtyDescription, Bicycle bicycle) throws PriceReaderException {
+    public static Bicycle parseDescription(String dirtyDescription, DirtyBicycle bicycle) throws PriceReaderException {
 
-        FullBicycle fullBicycle = new FullBicycle(bicycle);
+        Bicycle fullBicycle = new Bicycle(bicycle);
 
         dirtyDescription = roadBikesLadyGentFix(dirtyDescription);
         String[] characteristics = dirtyDescription.split(",");
@@ -44,10 +44,10 @@ public class DescriptionParser {
         }
         fullBicycle.setFrame(frame);
         fullBicycle.setFrontFork(setParameter(characteristics, FORK));
-        fullBicycle.setRims(setParameter(characteristics, RIMS));
+//        fullBicycle.setRims(setParameter(characteristics, RIMS));
         fullBicycle.setFenders(setParameter(characteristics, FENDERS));
         fullBicycle.setBreaks(setParameter(characteristics, BREAKS));
-        fullBicycle.setSaddle(setParameter(characteristics, SADDLE));
+//        fullBicycle.setSaddle(setParameter(characteristics, SADDLE));
 
         fullBicycle.setFrontDerailleur(setDerailleur(characteristics, FROND_DERAILLEUR));
         fullBicycle.setRearDerailleur(setDerailleur(characteristics, REAR_DERAILLEUR));
@@ -122,7 +122,7 @@ public class DescriptionParser {
     }
 
 
-    public static String getShortDescription(FullBicycle model) {
+    public static String getShortDescription(Bicycle model) {
         String strMod = model.getModel();
         StringBuffer result = new StringBuffer();
         try {

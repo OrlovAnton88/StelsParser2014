@@ -1,6 +1,6 @@
 package ru.antonorlov.util;
 
-import ru.antonorlov.entities.FullBicycle;
+import ru.antonorlov.entities.Bicycle;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import java.util.List;
 public class Util {
 
 
-    public static void transformTo2016(List<FullBicycle> list){
+    public static void transformTo2016(List<Bicycle> list){
 
-        for (FullBicycle fullBicycle : list) {
+        for (Bicycle fullBicycle : list) {
             String productCode = fullBicycle.getProductCode();
             String newProductCode = productCode.substring(0, productCode.length() - 2) + "16";
             fullBicycle.setProductCode(newProductCode);
