@@ -46,7 +46,7 @@ public class Bicycle {
     private String imageName3;
 
     @Column
-    private int frameSize;
+    private String frameSize;
 
     @Column
     private String frame;
@@ -183,11 +183,11 @@ public class Bicycle {
         this.wheelsSize = wheelsSize;
     }
 
-    public int getFrameSize() {
+    public String getFrameSize() {
         return frameSize;
     }
 
-    public void setFrameSize(int frameSize) {
+    public void setFrameSize(String frameSize) {
         this.frameSize = frameSize;
     }
 

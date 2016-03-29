@@ -49,7 +49,7 @@ public class PriceConfig {
 
     public int getPriceColumn(Brand brand){
         if(brand.equals(Brand.STELS)){
-            return stelsDescriptionColumnNum;
+            return stelsPriceColumnNum;
         }else if(brand.equals(Brand.FORWARD)){
             return forwardPriceColumnNum;
         }else {

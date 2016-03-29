@@ -157,10 +157,12 @@ public class DescriptionParser {
 
         }
         String wheels = model.getWheelsSize();
-        if (wheels.equals("24")) {
-            result.append("с колесами " + wheels + " дюйма.");
-        } else {
-            result.append("с колесами " + wheels + " дюймов.");
+        if(wheels != null) {
+            if (wheels.equals("24")) {
+                result.append("с колесами " + wheels + " дюйма.");
+            } else {
+                result.append("с колесами " + wheels + " дюймов.");
+            }
         }
 
         if (strMod.toLowerCase().contains("disc")) {
@@ -179,14 +181,16 @@ public class DescriptionParser {
         }
         try {
             int speeds = model.getSpeedsNum();
-            result.append(" " + speeds);
-            if (speeds == 21 || speeds == 1) {
-                result.append(" скорость. ");
-            } else if (speeds == 18 || speeds == 5 || speeds == 7 || speeds == 6 || speeds == 12) {
-                result.append(" скоростей. ");
+            if(speeds != 0) {
+                result.append(" " + speeds);
+                if (speeds == 21 || speeds == 1) {
+                    result.append(" скорость. ");
+                } else if (speeds == 18 || speeds == 5 || speeds == 7 || speeds == 6 || speeds == 12) {
+                    result.append(" скоростей. ");
 
-            } else {
-                result.append(" скорости. ");
+                } else {
+                    result.append(" скорости. ");
+                }
             }
         } catch (NumberFormatException ex) {
             System.out.println("Cant parse speeds number: " + ex.getMessage());

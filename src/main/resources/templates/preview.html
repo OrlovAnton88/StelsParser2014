@@ -11,8 +11,8 @@
 <b style="color: red;" th:text="${errorMsg}"></b>
 
 <div th:if="${errorMsg == null}">
-    Total: <b th:text="${list.size()}"></b>
-    <a th:href="@{/fullCsv}">Скачать полный файл</a>
+    Total: <b th:text="${priceList.bicycles.size()}"></b>
+    <!--<a th:href="@{/fullCsv/{id}}">Скачать полный файл</a>-->
 </div>
 <table class="table table-striped">
     <tr>
@@ -23,19 +23,20 @@
         <th>price</th>
         <th>wheelsSize</th>
         <th>frame</th>
-        <th>breaks</th>
+        <th>sppeds</th>
         <th>Image</th>
     </tr>
-    <tr th:each="bike,iterationStatus  : ${list}">
+    <tr th:each="bike,iterationStatus  : ${priceList.bicycles}">
         <td th:text="${iterationStatus.count}">1</td>
         <td th:text="${bike.transformed}">1</td>
         <td th:text="${bike.productCode}">001</td>
         <td th:text="${bike.model}">Name</td>
         <td><b th:text="${bike.price}"></b></td>
         <td th:text="${bike.wheelsSize}">City</td>
+        <td th:text="${bike.wheelsSize}">City</td>
         <td th:text="${bike.frame}">City</td>
-        <td th:text="${bike.breaks}">City</td>
-        <td th:text="${bike.imageName}">image</td>
+        <td th:text="${bike.speedsNum}">City</td>
+        <td><span th:text="${bike.imageName}">image</span> <img th:src="${bike.imageName}" style="width: 20px; height: 20px"/></td>
     </tr>
 </table>
 </body>

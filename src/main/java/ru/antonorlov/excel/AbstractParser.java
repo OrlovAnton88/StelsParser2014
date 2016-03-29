@@ -78,7 +78,11 @@ public abstract class AbstractParser {
 
             Row row = sheet.getRow(i);
             if (row == null) {
-                break;
+                continue;
+            }
+            if (!isRowToBeProcessed(row)) {
+                LOGGER.info("Skipping row[" + row.getRowNum() + "]");
+                continue;
             }
             Cell dirtyModelName = row.getCell(priceConfig.getModelNameColumn(brand));
             int descriptionColumnNum = priceConfig.getDescriptionColumnNum(brand);
@@ -130,12 +134,27 @@ public abstract class AbstractParser {
                     }
                 }
             }
+            //todo: refactor
+            if (brand.equals(Brand.FORWARD)) {
+                Cell brandCell = row.getCell(0);
+                if (Cell.CELL_TYPE_STRING == brandCell.getCellType()) {
+                    String value = brandCell.getStringCellValue();
+                    try {
+                        Brand current = Brand.valueOf(value);
+                        priceRow.setBrand(current);
+                    } catch (Exception ex) {
+                        LOGGER.warn("Fail to get brand[" + value + "]");
+                    }
+                }
+            }
 
             list.add(priceRow);
         }
         return list;
 
     }
+
+    protected abstract boolean isRowToBeProcessed(final Row row);
 
     protected int getRoundedPrice(final Double originalPrice) {
         int roundedPrice = 0;

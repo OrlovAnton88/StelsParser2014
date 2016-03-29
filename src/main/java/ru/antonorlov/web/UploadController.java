@@ -85,7 +85,8 @@ public class UploadController {
 //                thread.start();
                 return "You successfully uploaded " + name + "!";
             } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
+                LOGGER.error("Fail to parse price: ", e);
+                return "You failed to upload " + name + " => " + e.getCause();
             }
         } else {
             return "You failed to upload " + name + " because the file was empty.";

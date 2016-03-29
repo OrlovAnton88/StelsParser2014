@@ -11,10 +11,11 @@
 <p th:text="${priceFileExists}"></p>
 
 <table class="table table-striped">
-    <tr th:each="file,iterStat : ${files}">
+    <tr th:each="priceList,iterStat : ${priceLists}">
         <td th:text="${iterStat.index +1}"></td>
-        <td th:text="${file.name}"></td>
-        <td><a th:href="@{/preview(file=${file.name})}">Предпросмотр</a></td>
+        <td th:text="${priceList.name}"></td>
+        <td><a th:href="@{/preview/{id}(id=${priceList.id})}">Предпросмотр</a></td>
+        <td><a th:href="@{/fullCsv/{id}(id=${priceList.id})}">csv</a></td>
     </tr>
 </table>
 

@@ -125,7 +125,7 @@ public class CSVEngine {
         result[0] = sortValue+"";
         result[1] = prodCode;
         result[2] = model.getModel();
-        result[3] = result[2];
+        result[3] = "Купить велосипед " + model.getModel();
         result[5] = "";
         result[5] = model.getShortDescription();
         result[6] = String.valueOf(model.getPrice());
@@ -146,7 +146,7 @@ public class CSVEngine {
         if (model.getImageName3() != null) {
             result[20] = model.getImageName3() + ',' + model.getImageName3() + ',' + model.getImageName3();
         }
-        result[25] = "Stels";
+        result[25] = model.getBrand().name();
         result[26] = model.getWheelsSize();
 //        String frameSize = String.valueOf(model.getFrameSize());
 //        if (frameSize.equals("0")) {

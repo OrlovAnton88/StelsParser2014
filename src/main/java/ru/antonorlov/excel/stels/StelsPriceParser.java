@@ -111,20 +111,36 @@ public class StelsPriceParser extends AbstractParser {
     }
 
 
-
     public List<Bicycle> getBicycles(final Year year) throws PriceReaderException {
         return getBicycles(year, priceFilePath);
     }
 
     public List<Bicycle> getBicycles(final Year year, final String filePath) throws PriceReaderException {
+
+        //todo: refactor
         List<DirtyBicycle> list = getDirtyBicycles(year, filePath);
+
+        List<Bicycle> toReturn = new ArrayList<>();
+        List<Bicycle> bicycles2016 = transform(list);
+        toReturn.addAll(bicycles2016);
+
+        List<DirtyBicycle> dirtyBicycles2015 = getDirtyBicycles(Year.YEAR_2015, filePath);
+        List<Bicycle> bicycles2015 = transform(dirtyBicycles2015);
+        Util.transformTo2016(bicycles2015);
+
+        toReturn.addAll(bicycles2015);
+
+        return toReturn;
+    }
+
+    private List<Bicycle> transform(List<DirtyBicycle> dirtyBicycles) throws PriceReaderException {
         List<Bicycle> toReturn = new ArrayList<>();
 
-        for (DirtyBicycle bicycle : list) {
+        for (DirtyBicycle bicycle : dirtyBicycles) {
             Bicycle b = DescriptionParser.parseDescription(bicycle.getDescription(), bicycle);
             b.setModel("Stels " + b.getModel());
             b.setShortDescription(DescriptionParser.getShortDescription(b));
-
+            b.setBrand(Brand.STELS);
             String imgName = b.getProductCode() + ".jpg";
             b.setImageName(imgName);
 
@@ -161,5 +177,8 @@ public class StelsPriceParser extends AbstractParser {
 
     }
 
-
+    @Override
+    protected boolean isRowToBeProcessed(Row row) {
+        return true;
+    }
 }
