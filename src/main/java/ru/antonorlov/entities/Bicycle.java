@@ -71,7 +71,24 @@ public class Bicycle {
 
     @Column
     private String shortDescription;
+    
+    @Column
+    private String longDescription;
+    
+    /** todo:
+    @ElementCollection
+    @MapKeyColumn(name="name")
+    @Column(name="value")
+    @CollectionTable(name="example_attributes", joinColumns=@JoinColumn(name="example_id"))
+    Map<BicycleParamEnum, String> params;
+    
+    @OneToMany(mappedBy = "string", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @MapKeyEnumerated(EnumType.STRING)
+    @MapKeyColumn(name = "bicycleParamEnum", insertable = false, updatable = false)
+    private final Map<BicycleParamEnum, String> translations = new HashMap<Language, String>();
 
+	**/
+	
     /**
      * true if model not from price list, but constructed syntatically
      */
